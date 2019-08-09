@@ -1,0 +1,37 @@
+{
+  "name": "hackathon-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html",
+    "types": "tsc --noEmit --watch"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "mobx": "^5.13.0",
+    "mobx-react-lite": "^1.4.1",
+    "mobx-utils": "^5.4.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.2",
+    "store": "^2.0.12",
+    "web3": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.2",
+    "@types/web3": "^1.0.19",
+    "parcel": "^1.12.3",
+    "typescript": "^3.5.3"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
