@@ -30,7 +30,7 @@ function useSubscribable<T>(getTarget: () => Subscribable<T>, deps: any[], fallb
       },
       error: err => setError(getErrorMsg(err)),
     });
-    return subscribtion.unsubscribe;
+    return () => subscribtion.unsubscribe();
   }, [target]);
 
   const meta: Meta = useMemo(() => ({

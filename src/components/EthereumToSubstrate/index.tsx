@@ -5,6 +5,8 @@ import { useSubscribable } from '~util/hooks';
 import { useApi } from '~components/context';
 import { Balance } from '~components/Balance';
 
+import SendingForm from './SendingForm';
+
 function EthereumToSubstrate() {
   const api = useApi();
   const [account, { error: accountError }] = useSubscribable(() => api.getEthAccount$(), []);
@@ -16,7 +18,7 @@ function EthereumToSubstrate() {
         {account && <Balance address={account} type="ethereum" />}
       </Grid>
       <Grid item xs={12}>
-        Coming Soon
+        <SendingForm />
       </Grid>
     </Grid>
   );

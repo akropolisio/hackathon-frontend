@@ -5,7 +5,7 @@ interface INetworkConfig {
   name: string;
   rpcUrl: string;
   contracts: {
-    c2fc: string;
+    bridge: string;
     dai: string;
   };
 }
@@ -16,7 +16,7 @@ const ethNetworkConfigs: Record<number, INetworkConfig> = {
     name: "Kovan",
     rpcUrl: "https://kovan.infura.io/",
     contracts: {
-      c2fc: "0x174B2918417f150Ca19eC5915fe090E543df2eeb",
+      bridge: "0x9ff8c644F09B0B7dc030C8aaD52dC1628a22C4c2",
       dai: "0xC4375B7De8af5a38a93548eb8453a498222C4fF2"
     }
   },
@@ -25,7 +25,7 @@ const ethNetworkConfigs: Record<number, INetworkConfig> = {
     name: "Mainnet",
     rpcUrl: "https://mainnet.infura.io/",
     contracts: {
-      c2fc: "0x174B2918417f150Ca19eC5915fe090E543df2eeb",
+      bridge: "0x9ff8c644F09B0B7dc030C8aaD52dC1628a22C4c2",
       dai: "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
     }
   }
