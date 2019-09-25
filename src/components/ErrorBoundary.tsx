@@ -21,7 +21,12 @@ export class ErrorBoundary extends React.Component<{}, IState> {
       debugger;
     }
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return (
+        <div>
+          <h1>Something went wrong.</h1>
+          <pre>{this.state.error.toString()}</pre>
+        </div>
+      );
     }
 
     return this.props.children;
