@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
+import EthereumToSubstrate from '~components/EthereumToSubstrate';
+import SubstrateToEthereum from '~components/SubstrateToEthereum';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,11 +21,11 @@ function App() {
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h3" align="center" gutterBottom>Ethereum to Substrate</Typography>
-        Coming soon
+        <EthereumToSubstrate />
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h3" align="center" gutterBottom>Substrate to Ethereum</Typography>
-        Coming soon
+        <SubstrateToEthereum />
       </Grid>
     </Grid>
   );

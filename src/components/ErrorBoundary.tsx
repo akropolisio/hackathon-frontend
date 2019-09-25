@@ -17,9 +17,6 @@ export class ErrorBoundary extends React.Component<{}, IState> {
   }
 
   render() {
-    if (this.state.error) {
-      debugger;
-    }
     if (this.state.hasError) {
       return (
         <div>

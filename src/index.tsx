@@ -1,14 +1,15 @@
 import "reflect-metadata";
 import Web3 from "web3";
+import { ApiRx, WsProvider } from '@polkadot/api';
 import * as React from "react";
 import { render } from "react-dom";
 import { MuiThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core';
 
 import { Api } from "~/api";
-import { Store } from "~/store";
+import { SUBSTRATE_NODE_URL, SUBSTRATE_NODE_CUSTOM_TYPES } from '~env';
 
 import App from '~components/App';
-import { StoreContext, ApiContext } from "~/components/context";
+import { ApiContext } from "~/components/context";
 import { ErrorBoundary } from "~/components/ErrorBoundary";
 
 const theme = createMuiTheme({
@@ -23,18 +24,19 @@ function Root() {
   // Detect if Web3 is found, if not, ask the user to install Metamask
   if (window.web3) {
     const web3 = new Web3(window.web3.currentProvider);
-    const api = new Api(web3);
-    const store = new Store(api);
+    const substrateApi = ApiRx.create({
+      provider: new WsProvider(SUBSTRATE_NODE_URL),
+      types: SUBSTRATE_NODE_CUSTOM_TYPES,
+    });
+    const api = new Api(web3, substrateApi);
 
     return (
       <ErrorBoundary>
         <MuiThemeProvider theme={theme}>
-          <StoreContext.Provider value={store}>
-            <ApiContext.Provider value={api}>
-              <CssBaseline />
-              <App />
-            </ApiContext.Provider>
-          </StoreContext.Provider>
+          <ApiContext.Provider value={api}>
+            <CssBaseline />
+            <App />
+          </ApiContext.Provider>
         </MuiThemeProvider>
       </ErrorBoundary>
     );
