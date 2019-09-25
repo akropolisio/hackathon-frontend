@@ -2,16 +2,24 @@ import "reflect-metadata";
 import Web3 from "web3";
 import * as React from "react";
 import { render } from "react-dom";
+import { MuiThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core';
 
 import { Api } from "~/api";
 import { Store } from "~/store";
-import { StoreContext } from "~/components/context";
-import { Balance } from "~/components/Balance";
+
+import App from '~components/App';
+import { StoreContext, ApiContext } from "~/components/context";
 import { ErrorBoundary } from "~/components/ErrorBoundary";
 
-import "./styles.css";
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#6931b6',
+    },
+  },
+});
 
-function App() {
+function Root() {
   // Detect if Web3 is found, if not, ask the user to install Metamask
   if (window.web3) {
     const web3 = new Web3(window.web3.currentProvider);
@@ -20,15 +28,14 @@ function App() {
 
     return (
       <ErrorBoundary>
-        <StoreContext.Provider value={store}>
-          <div>Initialized</div>
-          <pre>
-            <Balance address="0x5D507818B52A891fe296463adC01EeD9C51e218b" />
-          </pre>
-          <pre>
-            <Balance address="0xC21367e98bb94A5FbA946b2af345339Dfb2F024F" />
-          </pre>
-        </StoreContext.Provider>
+        <MuiThemeProvider theme={theme}>
+          <StoreContext.Provider value={store}>
+            <ApiContext.Provider value={api}>
+              <CssBaseline />
+              <App />
+            </ApiContext.Provider>
+          </StoreContext.Provider>
+        </MuiThemeProvider>
       </ErrorBoundary>
     );
   } else {
@@ -37,4 +44,4 @@ function App() {
 }
 
 const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+render(<Root />, rootElement);
